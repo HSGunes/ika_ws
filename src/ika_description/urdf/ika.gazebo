@@ -1,0 +1,150 @@
+<?xml version="1.0" ?>
+<robot name="ika" xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+<xacro:property name="body_color" value="Gazebo/Silver" />
+
+<!-- Base Link -->
+<gazebo reference="base_link">
+  <material>${body_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <self_collide>true</self_collide>
+  <gravity>true</gravity>
+</gazebo>
+
+<!-- Laser Alt -->
+<gazebo reference="lazer_alt_v1_1">
+  <material>${body_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <self_collide>true</self_collide>
+</gazebo>
+
+<!-- Laser Kafa -->
+<gazebo reference="lazer_kafa_v1_1">
+  <material>${body_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <self_collide>true</self_collide>
+</gazebo>
+
+<!-- Sağ Montaj -->
+<gazebo reference="sag_montaj_v1__1__1">
+  <material>${body_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <self_collide>true</self_collide>
+</gazebo>
+
+<!-- Sol Montaj -->
+<gazebo reference="sol_montaj_1_v81_v1__1__1">
+  <material>${body_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <self_collide>true</self_collide>
+</gazebo>
+
+<!-- Sağ Ön Montaj -->
+<gazebo reference="sag_on_montaj_v1_1">
+  <material>${body_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <self_collide>true</self_collide>
+</gazebo>
+
+<!-- Sol Ön Montaj -->
+<gazebo reference="sol_on_montaj_v1_1">
+  <material>${body_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <self_collide>true</self_collide>
+</gazebo>
+
+<!-- 360 Montaj 1 -->
+<gazebo reference="360_motaj_1">
+  <material>${body_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <self_collide>true</self_collide>
+</gazebo>
+
+<!-- 360 Montaj 2 -->
+<gazebo reference="360_motaj__1__1">
+  <material>${body_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <self_collide>true</self_collide>
+</gazebo>
+
+<!-- 360 Montaj 3 -->
+<gazebo reference="360_montaj_1">
+  <material>${body_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <self_collide>true</self_collide>
+</gazebo>
+
+<!-- 360 Montaj 4 -->
+<gazebo reference="360_motaj__2__1">
+  <material>${body_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <self_collide>true</self_collide>
+</gazebo>
+
+<!-- Tekerlekler -->
+<gazebo reference="tekerlek_v1_1">
+  <material>${body_color}</material>
+  <mu1>0.8</mu1>
+  <mu2>0.8</mu2>
+  <self_collide>true</self_collide>
+  <kp>1000000.0</kp>
+  <kd>100.0</kd>
+</gazebo>
+
+<gazebo reference="tekerlek_v1__1__1">
+  <material>${body_color}</material>
+  <mu1>0.8</mu1>
+  <mu2>0.8</mu2>
+  <self_collide>true</self_collide>
+  <kp>1000000.0</kp>
+  <kd>100.0</kd>
+</gazebo>
+
+<gazebo reference="tekerlek_v1__2__1">
+  <material>${body_color}</material>
+  <mu1>0.8</mu1>
+  <mu2>0.8</mu2>
+  <self_collide>true</self_collide>
+  <kp>1000000.0</kp>
+  <kd>100.0</kd>
+</gazebo>
+
+<gazebo reference="tekerlek_v1__3__1">
+  <material>${body_color}</material>
+  <mu1>0.8</mu1>
+  <mu2>0.8</mu2>
+  <self_collide>true</self_collide>
+  <kp>1000000.0</kp>
+  <kd>100.0</kd>
+</gazebo>
+
+<gazebo reference="tekerlek_v1__4__1">
+  <material>${body_color}</material>
+  <mu1>0.8</mu1>
+  <mu2>0.8</mu2>
+  <self_collide>true</self_collide>
+  <kp>1000000.0</kp>
+  <kd>100.0</kd>
+</gazebo>
+
+<gazebo reference="tekerlek_1">
+  <material>${body_color}</material>
+  <mu1>0.8</mu1>
+  <mu2>0.8</mu2>
+  <self_collide>true</self_collide>
+  <kp>1000000.0</kp>
+  <kd>100.0</kd>
+</gazebo>
+
+</robot>

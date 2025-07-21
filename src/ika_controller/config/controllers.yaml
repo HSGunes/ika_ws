@@ -1,0 +1,93 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 50
+    use_sim_time: true
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    # Steering controllers for 4 steerable wheels
+    front_steering_controller:
+      type: position_controllers/JointGroupPositionController
+
+    rear_steering_controller:
+      type: position_controllers/JointGroupPositionController
+
+    # Velocity controllers for 6 drive wheels
+    left_wheels_controller:
+      type: velocity_controllers/JointGroupVelocityController
+
+    right_wheels_controller:
+      type: velocity_controllers/JointGroupVelocityController
+
+# Front steering controller configuration
+front_steering_controller:
+  ros__parameters:
+    joints:
+      - sol_on_360
+      - sag_on_360
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+    gains:
+      sol_on_360: {p: 100.0, i: 0.0, d: 1.0}
+      sag_on_360: {p: 100.0, i: 0.0, d: 1.0}
+
+# Rear steering controller configuration
+rear_steering_controller:
+  ros__parameters:
+    joints:
+      - sol_arka_360
+      - sag_arka_360
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+    gains:
+      sol_arka_360: {p: 100.0, i: 0.0, d: 1.0}
+      sag_arka_360: {p: 100.0, i: 0.0, d: 1.0}
+
+# Left wheels velocity controller configuration
+left_wheels_controller:
+  ros__parameters:
+    joints:
+      - sol_on_teker
+      - sol_orta_teker
+      - sol_arka_teker
+    command_interfaces:
+      - velocity
+    state_interfaces:
+      - position
+      - velocity
+    gains:
+      sol_on_teker: {p: 10.0, i: 0.0, d: 1.0}
+      sol_orta_teker: {p: 10.0, i: 0.0, d: 1.0}
+      sol_arka_teker: {p: 10.0, i: 0.0, d: 1.0}
+
+# Right wheels velocity controller configuration
+right_wheels_controller:
+  ros__parameters:
+    joints:
+      - sag_on_teker
+      - sag_orta_teker
+      - sag_arka_teker
+    command_interfaces:
+      - velocity
+    state_interfaces:
+      - position
+      - velocity
+    gains:
+      sag_on_teker: {p: 10.0, i: 0.0, d: 1.0}
+      sag_orta_teker: {p: 10.0, i: 0.0, d: 1.0}
+      sag_arka_teker: {p: 10.0, i: 0.0, d: 1.0}
+
+# Twist filter parameters
+twist_filter:
+  ros__parameters:
+    max_speed: 3.0
+    max_angular_velocity: 2.0
+    command_timeout: 0.5
+    accel_limit_linear: 1.5
+    decel_limit_linear: 2.5
+    accel_limit_angular: 2.0 
