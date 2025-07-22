@@ -4,6 +4,8 @@
 <xacro:include filename="$(find ika_description)/urdf/materials.xacro" />
 <xacro:include filename="$(find ika_description)/urdf/ika.trans" />
 <xacro:include filename="$(find ika_description)/urdf/ika.gazebo" />
+<xacro:include filename="$(find ika_description)/urdf/rplidar_s2.xacro"/>
+<xacro:include filename="$(find ika_description)/urdf/d435_camera.xacro"/>
 <link name="base_link">
   <inertial>
     <origin xyz="0.005414069729213678 -9.213349753885084e-05 0.18125650823624936" rpy="0 0 0"/>
@@ -24,6 +26,14 @@
     </geometry>
   </collision>
 </link>
+
+<!-- Lidar (RPLidar S2) -->
+<xacro:rplidar_s2 parent="base_link" name="lidar" xyz="1.07 -0.015 0.63" rpy="0 0.035 0"/>
+<xacro:rplidar_s2_gazebo_plugin name="lidar"/>
+
+<!-- Kamera (D435) -->
+<xacro:realsense_d435 parent="base_link" name="camera" xyz="0.46 -0.10 0.985" rpy="0 0 0"/>
+<xacro:d435_gazebo_plugins name="camera"/>
 
 <link name="lazer_alt_v1_1">
   <inertial>

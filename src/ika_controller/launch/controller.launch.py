@@ -54,9 +54,25 @@ def generate_launch_description():
         }],
     )
 
+    ground_truth_odom_node = Node(
+        package='ika_controller',
+        executable='ika_ground_truth_odom',
+        name='ika_ground_truth_odom_node',
+        output='screen',
+        parameters=[
+            {'model_name': 'ika',
+             'odom_frame': 'odom',
+             'base_link_frame': 'base_link',
+             'publish_tf': True,
+             'odom_topic': '/odom_ground_truth'}
+        ]
+    )
+
     nodes = [
         ika_controller_node,
         ika_bridge_node,
     ]
 
-    return LaunchDescription(declared_arguments + nodes) 
+    ld = LaunchDescription()
+    ld.add_action(ground_truth_odom_node)
+    return ld 

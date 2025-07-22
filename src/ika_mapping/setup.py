@@ -1,13 +1,13 @@
-from setuptools import setup
+from setuptools import find_packages, setup
 import os
 from glob import glob
 
-package_name = 'ika_controller'
+package_name = 'ika_mapping'
 
 setup(
     name=package_name,
     version='0.0.0',
-    packages=[package_name],
+    packages=find_packages(exclude=['test']),
     data_files=[
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
@@ -17,17 +17,13 @@ setup(
     ],
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='user',
-    maintainer_email='user@todo.todo',
-    description='Controller package for ika 6-wheel rover',
-    license='TODO',
+    maintainer='gunes',
+    maintainer_email='gunes@todo.todo',
+    description='TODO: Package description',
+    license='TODO: License declaration',
+    tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'ika_controller = ika_controller.ika_controller:main',
-            'ika_bridge = ika_controller.ika_bridge:main',
-            'ika_odom = ika_controller.ika_odom:main',
-            'ika_ground_truth_odom = ika_controller.ika_ground_truth_odom:main',
-            'rover_teleop = ika_controller.rover_teleop:main',
         ],
     },
-) 
+)

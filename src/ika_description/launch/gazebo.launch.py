@@ -31,6 +31,9 @@ def generate_launch_description():
         name='joint_state_publisher'
     )
 
+    world_file = os.path.join(share_dir, 'world', 'ika_parkur.world')
+    print("World file path:", world_file)
+    
     gazebo_server = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([
             PathJoinSubstitution([
@@ -40,7 +43,9 @@ def generate_launch_description():
             ])
         ]),
         launch_arguments={
-            'pause': 'true'
+            'pause': 'true',
+            'world': world_file,
+            'world_name': world_file
         }.items()
     )
 

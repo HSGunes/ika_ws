@@ -158,6 +158,21 @@ def generate_launch_description():
         ]
     )
 
+    ground_truth_odom_node = Node(
+        package='ika_controller',
+        executable='ika_ground_truth_odom',
+        name='ika_ground_truth_odom_node',
+        output='screen',
+        parameters=[{
+            'model_name': 'ika',
+            'odom_frame': 'odom',
+            'base_link_frame': 'base_link',
+            'publish_tf': True,
+            'odom_topic': '/odom_ground_truth',
+            'use_sim_time': use_sim_time,
+        }],
+    )
+
     # Add delays for controller loading
     delayed_front_steering = TimerAction(
         period=2.0,
@@ -191,6 +206,7 @@ def generate_launch_description():
         ika_bridge_node,
         ika_odom_node,
         ekf_node,
+        ground_truth_odom_node,
     ]
 
     return LaunchDescription(declared_arguments + nodes) 
