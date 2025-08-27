@@ -28,11 +28,11 @@
 </link>
 
 <!-- Lidar (RPLidar S2) -->
-<xacro:rplidar_s2 parent="base_link" name="lidar" xyz="1.07 -0.015 0.63" rpy="0 0.035 0"/>
+<xacro:rplidar_s2 parent="base_link" name="lidar" xyz="0.2 0 0.36" rpy="0 0.035 0"/>
 <xacro:rplidar_s2_gazebo_plugin name="lidar"/>
 
 <!-- Kamera (D435) -->
-<xacro:realsense_d435 parent="base_link" name="camera" xyz="0.46 -0.10 0.985" rpy="0 0 0"/>
+<xacro:realsense_d435 parent="base_link" name="camera" xyz="0.2 -0.10 0.37" rpy="0 0 0"/>
 <xacro:d435_gazebo_plugins name="camera"/>
 
 <link name="lazer_alt_v1_1">
@@ -371,14 +371,14 @@
   </collision>
 </link>
 
-<joint name="laser_alt" type="continuous">
+<joint name="laser_alt" type="fixed">
   <origin xyz="0.000155 -0.001158 0.366945" rpy="0 0 0"/>
   <parent link="base_link"/>
   <child link="lazer_alt_v1_1"/>
   <axis xyz="0.0 0.0 1.0"/>
 </joint>
 
-<joint name="laser_ust" type="revolute">
+<joint name="laser_ust" type="fixed">
   <origin xyz="0.006213 -0.1 0.10975" rpy="0 0 0"/>
   <parent link="lazer_alt_v1_1"/>
   <child link="lazer_kafa_v1_1"/>
@@ -386,23 +386,21 @@
   <limit upper="0.523599" lower="-0.261799" effort="100" velocity="100"/>
 </joint>
 
-<joint name="sag_kol" type="revolute">
+<joint name="sag_kol" type="fixed">
   <origin xyz="-0.002 -0.39 0.175" rpy="0 0 0"/>
   <parent link="base_link"/>
   <child link="sag_montaj_v1__1__1"/>
   <axis xyz="0.0 -1.0 0.0"/>
-  <limit upper="0.174533" lower="-0.174533" effort="100" velocity="100"/>
 </joint>
 
-<joint name="sol_kol" type="revolute">
+<joint name="sol_kol" type="fixed">
   <origin xyz="-0.001 0.389 0.175762" rpy="0 0 0"/>
   <parent link="base_link"/>
   <child link="sol_montaj_1_v81_v1__1__1"/>
   <axis xyz="0.0 1.0 0.0"/>
-  <limit upper="0.174533" lower="-0.174533" effort="100" velocity="100"/>
 </joint>
 
-<joint name="sag_on_kol" type="revolute">
+<joint name="sag_on_kol" type="fixed">
   <origin xyz="0.273451 -0.031 -0.138651" rpy="0 0 0"/>
   <parent link="sag_montaj_v1__1__1"/>
   <child link="sag_on_montaj_v1_1"/>
@@ -410,12 +408,13 @@
   <limit upper="0.174533" lower="-0.174533" effort="100" velocity="100"/>
 </joint>
 
-<joint name="sol_on_kol" type="revolute">
+<joint name="sol_on_kol" type="fixed">
   <origin xyz="0.273451 0.031 -0.13865" rpy="0 0 0"/>
   <parent link="sol_montaj_1_v81_v1__1__1"/>
   <child link="sol_on_montaj_v1_1"/>
   <axis xyz="0.0 1.0 -0.0"/>
   <limit upper="0.174533" lower="-0.174533" effort="100" velocity="100"/>
+  
 </joint>
 
 <joint name="sol_on_360" type="continuous">
@@ -423,6 +422,7 @@
   <parent link="sol_on_montaj_v1_1"/>
   <child link="360_motaj_1"/>
   <axis xyz="0.0 0.0 -1.0"/>
+
 </joint>
 
 <joint name="sag_on_360" type="continuous">
@@ -430,6 +430,7 @@
   <parent link="sag_on_montaj_v1_1"/>
   <child link="360_motaj__1__1"/>
   <axis xyz="-0.0 -0.0 -1.0"/>
+
 </joint>
 
 <joint name="sol_arka_360" type="continuous">

@@ -25,7 +25,7 @@ def generate_launch_description():
     declared_arguments.append(
         DeclareLaunchArgument(
             'description_file',
-            default_value='ika.urdf.xacro',
+            default_value='ika.xacro',
             description='URDF/XACRO description file with the robot.',
         )
     )

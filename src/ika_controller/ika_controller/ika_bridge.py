@@ -105,10 +105,6 @@ class IkaBridge(Node):
         self.left_wheels_publisher.publish(left_wheels_cmd)
         self.right_wheels_publisher.publish(right_wheels_cmd)
 
-        # Debug log
-        self.get_logger().info(
-            f"lin: {linear_velocity:.3f}, ang: {angular_velocity:.3f}, front: {front_steering_angle:.3f}, rear: {rear_steering_angle:.3f}"
-        )
 
 def main(args=None):
     rclpy.init(args=args)

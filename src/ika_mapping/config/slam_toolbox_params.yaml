@@ -1,0 +1,46 @@
+slam_toolbox:
+  ros__parameters:
+    use_sim_time: true
+    
+    # Temel frame ve topic ayarları
+    odom_frame: odom
+    base_frame: base_link
+    map_frame: map
+    scan_topic: /scan
+    
+    # Gerçek lidar frame ayarları
+    scan_frame: laser
+
+    # Zorunlu temel parametreler (önerilen minimal set)
+    resolution: 0.05
+    max_laser_range: 30.0
+    min_laser_range: 0.15
+    transform_timeout: 1.0
+    update_rate: 5.0
+    max_queue_size: 1000
+    
+    # Gerçek lidar için optimizasyon
+    scan_buffer_size: 5000
+    scan_buffer_max_scan: 5000
+    minimum_time_interval: 0.2
+    transform_publish_period: 0.1
+    max_queue_size: 5000
+    use_scan_matching: true
+    use_interactive_mode: false
+    enable_interactive_mode: false
+    use_odometry_information: true
+    use_scan_barycenter: false
+    use_scan_sharpening: false
+    
+    # Harita yönetimi
+    mode: mapping
+    map_start_pose: [0.0, 0.0, 0.0]
+    map_update_interval: 2.0
+    
+    # Odometri kullanımı
+    odometry_topic: /odom_rf2o
+    odometry_queue_size: 10
+    odometry_timeout: 0.5
+    
+    # Otomatik kaydetme devre dışı
+    enable_pose_extrapolator: false

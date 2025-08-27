@@ -1,0 +1,29 @@
+<root main_tree_to_execute="MainTree">
+  <BehaviorTree ID="MainTree">
+    <PipelineSequence name="root">
+      <RateController hz="1.0">
+        <Sequence name="check_and_replan">
+          <GoalReached/>
+          <GoalUpdated/>
+          <ReactiveSequence name="replanning">
+            <ComputePathToPose/>
+            <FollowPath/>
+          </ReactiveSequence>
+        </Sequence>
+      </RateController>
+      <ReactiveSequence name="recovery">
+        <RoundRobin name="recovery_actions">
+          <Sequence name="spin">
+            <Spin/>
+          </Sequence>
+          <Sequence name="back_up">
+            <BackUp/>
+          </Sequence>
+          <Sequence name="wait">
+            <Wait wait_duration="5"/>
+          </Sequence>
+        </RoundRobin>
+      </ReactiveSequence>
+    </PipelineSequence>
+  </BehaviorTree>
+</root>

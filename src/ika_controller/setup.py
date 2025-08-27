@@ -25,9 +25,8 @@ setup(
         'console_scripts': [
             'ika_controller = ika_controller.ika_controller:main',
             'ika_bridge = ika_controller.ika_bridge:main',
-            'ika_odom = ika_controller.ika_odom:main',
-            'ika_ground_truth_odom = ika_controller.ika_ground_truth_odom:main',
             'rover_teleop = ika_controller.rover_teleop:main',
+            'lidar_centering = ika_controller.lidar_centering:main',
         ],
     },
 ) 

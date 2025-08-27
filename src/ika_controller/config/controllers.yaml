@@ -1,7 +1,7 @@
 controller_manager:
   ros__parameters:
-    update_rate: 50
-    use_sim_time: true
+    update_rate: 100
+    use_sim_time: false
 
     joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
@@ -87,7 +87,7 @@ twist_filter:
   ros__parameters:
     max_speed: 3.0
     max_angular_velocity: 2.0
-    command_timeout: 0.5
+    command_timeout: 0.2
     accel_limit_linear: 1.5
     decel_limit_linear: 2.5
     accel_limit_angular: 2.0 

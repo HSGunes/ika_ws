@@ -6,6 +6,7 @@ from launch.actions import DeclareLaunchArgument, TimerAction
 from launch.substitutions import Command, FindExecutable, LaunchConfiguration, PathJoinSubstitution
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
+from ament_index_python.packages import get_package_share_directory
 
 
 def generate_launch_description():
@@ -58,6 +59,15 @@ def generate_launch_description():
         output='both',
         parameters=[robot_description],
     )
+
+    # Start static transform publisher for map to odom (if needed)
+    # static_tf_node = Node(
+    #     package='tf2_ros',
+    #     executable='static_transform_publisher',
+    #     name='static_transform_publisher',
+    #     arguments=['0', '0', '0', '0', '0', '0', 'map', 'odom'],
+    #     output='screen',
+    # )
 
     # Load and start controllers with delays
     joint_state_spawner = Node(
@@ -128,51 +138,16 @@ def generate_launch_description():
         }],
     )
 
-    ika_odom_node = Node(
-        package='ika_controller',
-        executable='ika_odom',
-        name='ika_odom',
-        output='screen',
-        parameters=[{
-            'wheelbase': 1.2,
-            'track_width': 0.8,
-            'wheel_radius': 0.15,
-            'odom_frame': 'odom',
-            'base_link_frame': 'base_link',
-            'publish_tf': True,
-        }],
-    )
 
-    ekf_node = Node(
-        package='robot_localization',
-        executable='ekf_node',
-        name='ekf_filter_node',
-        output='screen',
-        parameters=[
-            os.path.join(
-                FindPackageShare('ika_controller').find('ika_controller'),
-                'config',
-                'ekf.yaml'
-            ),
-            {'use_sim_time': use_sim_time}
-        ]
-    )
+    # Start joint_state_publisher for static joints (visual tf completeness)
+    # joint_state_publisher_node = Node(
+    #     package='joint_state_publisher',
+    #     executable='joint_state_publisher',
+    #     name='joint_state_publisher',
+    #     parameters=[{'publish_default_positions': True}]
+    # )
 
-    ground_truth_odom_node = Node(
-        package='ika_controller',
-        executable='ika_ground_truth_odom',
-        name='ika_ground_truth_odom_node',
-        output='screen',
-        parameters=[{
-            'model_name': 'ika',
-            'odom_frame': 'odom',
-            'base_link_frame': 'base_link',
-            'publish_tf': True,
-            'odom_topic': '/odom_ground_truth',
-            'use_sim_time': use_sim_time,
-        }],
-    )
-
+ 
     # Add delays for controller loading
     delayed_front_steering = TimerAction(
         period=2.0,
@@ -197,6 +172,7 @@ def generate_launch_description():
     nodes = [
         controller_manager_node,
         robot_state_pub_node,
+        # static_tf_node,
         joint_state_spawner,
         delayed_front_steering,
         delayed_rear_steering,
@@ -204,9 +180,7 @@ def generate_launch_description():
         delayed_right_wheels,
         ika_controller_node,
         ika_bridge_node,
-        ika_odom_node,
-        ekf_node,
-        ground_truth_odom_node,
+        
     ]
 
     return LaunchDescription(declared_arguments + nodes) 
