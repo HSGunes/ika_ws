@@ -1,0 +1,27 @@
+# ZED 2i Pozisyon Takibi Konfigürasyonu (Area Memory Olmadan)
+# Bu dosya ZED'in pozisyon takibini area memory olmadan aktif hale getirir
+
+/**:
+  ros__parameters:
+    pos_tracking:
+      pos_tracking_enabled: true          # Pozisyon takibini aktif hale getir
+      pos_tracking_mode: 'GEN_2'          # Gelişmiş pozisyon takibi modu
+      imu_fusion: true                    # IMU füzyonunu aktif hale getir
+      publish_tf: false                   # EKF kullanacağımız için TF yayını kapat
+      publish_map_tf: false               # Map TF yayını kapat
+      area_memory: false                  # Area memory'yi kapat (sorun yaratıyor)
+      area_file_path: ''                  # Area file path'i boş bırak
+      save_area_memory_on_closing: false  # Area memory kaydetmeyi kapat
+      reset_odom_with_loop_closure: false # Loop closure'ı kapat
+      set_gravity_as_origin: true         # Yerçekimini orijin olarak ayarla
+      floor_alignment: false              # Zemin hizalamasını kapat
+      path_pub_rate: 10.0                 # Yol yayınlama frekansı
+      two_d_mode: false                   # 3D modu kullan
+
+    depth:
+      depth_mode: 'NEURAL_LIGHT'          # Derinlik modu
+      depth_stabilization: 30             # Derinlik stabilizasyonu
+
+    sensors:
+      publish_imu_tf: false               # IMU TF yayını kapat
+      sensors_pub_rate: 100.0             # Sensör yayınlama frekansı
